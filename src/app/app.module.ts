@@ -10,7 +10,7 @@ import { LocationsModule } from './locations/locations.module';
 import { ForecastModule } from './forecast/forecast.module';
 import { LOCATION_STORAGE_KEY } from './core/location-storage.service';
 import { environment } from 'src/environments/environment';
-import { WEATHER_API_CONFIG, BACKUP_WEATHER_API_CONFIG } from './core/weather-api-config';
+import { WEATHER_API_CONFIG, BACKUP_WEATHER_API_CONFIG } from './core/model/weather-api-config';
 
 @NgModule({
   imports: [

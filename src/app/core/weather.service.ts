@@ -1,6 +1,6 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { WEATHER_API_CONFIG, WeatherApiConfig, BACKUP_WEATHER_API_CONFIG } from './weather-api-config';
+import { WEATHER_API_CONFIG, WeatherApiConfig, BACKUP_WEATHER_API_CONFIG } from './model/weather-api-config';
 import { catchError } from 'rxjs/operators';
 import { CurrentWeather } from './model/current-weather';
 

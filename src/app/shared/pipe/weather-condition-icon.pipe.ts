@@ -14,6 +14,7 @@ export class WeatherConditionIconPipe implements PipeTransform {
     if (value == null) {
       return value as any;
     }
+
     let type = WeatherConditionType.from(value);
     switch (type) {
       case WeatherConditionType.Thunderstorm:
