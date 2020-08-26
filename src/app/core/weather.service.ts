@@ -4,6 +4,7 @@ import { WEATHER_API_CONFIG, WeatherApiConfig, BACKUP_WEATHER_API_CONFIG } from 
 import { catchError } from 'rxjs/operators';
 import { WeatherData } from './model/weather-data';
 import { throwError } from 'rxjs';
+import { WeatherForecastData } from './model/weather-forecast-data';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,26 @@ export class WeatherService {
     }
 
     return apiCall;
+  }
+
+  getDailyWeatherForecast(zipCode: string, days: number) {
+    return this.http.get<WeatherForecastData>(`${this.config.url}/data/2.5/forecast/daily`, {
+      params: {
+        zip: zipCode,
+        cnt: `${days}`,
+        appid: this.config.appId
+      }
+    }).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status == 404) {
+          return throwError({
+            cod: err.status,
+            message: `city not found (${zipCode})`
+          });
+        }
+        return throwError(err.error);
+      })
+    )
   }
 
   private buildCurrentWeatherCall(zipCode: string, config: WeatherApiConfig) {

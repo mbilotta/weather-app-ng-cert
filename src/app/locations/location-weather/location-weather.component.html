@@ -14,7 +14,7 @@
         - Min {{location.main.temp_min}}
       </p>
       <p>
-        <a routerLink="/forecast/95742">Show 5-day forecast for {{location.name}}</a>
+        <a [routerLink]="['/forecast', zipCode]">Show 5-day forecast for {{location.name}}</a>
       </p>
     </div>  
   </ng-template>

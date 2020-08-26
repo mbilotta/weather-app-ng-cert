@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherService } from 'src/app/core/weather.service';
+import { ActivatedRoute } from '@angular/router';
+import { WeatherForecastData } from 'src/app/core/model/weather-forecast-data';
 
 @Component({
   selector: 'app-forecast',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForecastComponent implements OnInit {
 
-  constructor() { }
+  zipCode: string;
+  forecastData: WeatherForecastData;
+
+  constructor(
+    private route: ActivatedRoute,
+    private weatherService: WeatherService
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+
+    });
   }
 
 }
