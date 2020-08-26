@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LocationsModule } from './locations/locations.module';
 import { ForecastModule } from './forecast/forecast.module';
@@ -21,7 +20,7 @@ import { WEATHER_API_CONFIG, BACKUP_WEATHER_API_CONFIG } from './core/model/weat
     ForecastModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, HelloComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
     {
