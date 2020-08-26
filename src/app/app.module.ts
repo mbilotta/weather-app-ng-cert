@@ -10,6 +10,7 @@ import { LocationsModule } from './locations/locations.module';
 import { ForecastModule } from './forecast/forecast.module';
 import { LOCATION_STORAGE_KEY } from './core/location-storage.service';
 import { environment } from 'src/environments/environment';
+import { WEATHER_API_CONFIG, BACKUP_WEATHER_API_CONFIG } from './core/weather-api-config';
 
 @NgModule({
   imports: [
@@ -26,6 +27,14 @@ import { environment } from 'src/environments/environment';
     {
       provide: LOCATION_STORAGE_KEY,
       useValue: environment.locationStorageKey
+    },
+    {
+      provide: WEATHER_API_CONFIG,
+      useValue: environment.openWeatherMap
+    },
+    {
+      provide: BACKUP_WEATHER_API_CONFIG,
+      useValue: environment.backupWeatherApi
     }
   ]
 })

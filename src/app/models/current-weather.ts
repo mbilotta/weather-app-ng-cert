@@ -5,5 +5,5 @@ export interface CurrentWeather {
   weather: Array<WeatherCondition>;
   main: WeatherTemperature;
   name: string;
-  zip: string;
+  cod: number;
 }
