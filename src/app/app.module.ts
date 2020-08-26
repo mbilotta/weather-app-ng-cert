@@ -8,6 +8,8 @@ import { HelloComponent } from './hello.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LocationsModule } from './locations/locations.module';
 import { ForecastModule } from './forecast/forecast.module';
+import { LOCATION_STORAGE_KEY } from './core/location-storage.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
@@ -19,6 +21,12 @@ import { ForecastModule } from './forecast/forecast.module';
     AppRoutingModule
   ],
   declarations: [AppComponent, HelloComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: LOCATION_STORAGE_KEY,
+      useValue: environment.locationStorageKey
+    }
+  ]
 })
 export class AppModule { }

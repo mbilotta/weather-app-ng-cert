@@ -10,7 +10,8 @@ export const environment = {
   },
   backupWeatherApi: {
     url: 'https://lp-store.herokuapp.com'
-  }
+  },
+  locationStorageKey: 'locations'
 };
 
 /*
