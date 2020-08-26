@@ -1,8 +1,9 @@
 import { Injectable, Inject, Optional } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { WEATHER_API_CONFIG, WeatherApiConfig, BACKUP_WEATHER_API_CONFIG } from './model/weather-api-config';
 import { catchError } from 'rxjs/operators';
 import { WeatherData } from './model/weather-data';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,13 @@ export class WeatherService {
 
     if (this.backupConfig) {
       apiCall = apiCall.pipe(
-        catchError(err => {
+        catchError((err: HttpErrorResponse) => {
+          if (err.status == 404) {
+            return throwError({
+              cod: err.status,
+              message: `city not found (${zipCode})`
+            });
+          }
           return this.buildBackupCurrentWeatherCall(zipCode, this.backupConfig);
         })
       );
@@ -41,6 +48,13 @@ export class WeatherService {
       params: {
         zipcode: zipCode
       }
-    });
+    }).pipe(
+      catchError((err: HttpErrorResponse) => {
+        return throwError({
+          cod: err.status,
+          message: err.message
+        });
+      })
+    );
   }
 }

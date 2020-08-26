@@ -1,7 +1,7 @@
 <div class="well flex">
   <div *ngIf="loading; else loadingComplete">Loading current weather for zip code {{zipCode}}...</div>
   <ng-template #loadingComplete>
-    <div *ngIf="error; else noErrors">Error: could not retrieve current weather for zip code {{zipCode}}.</div>
+    <div *ngIf="error; else noErrors">Error: {{error.message}}</div>
   </ng-template>
   <ng-template #noErrors>
     <div>

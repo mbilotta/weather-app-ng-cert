@@ -1,9 +1,16 @@
 import { WeatherCondition } from './weather-condition';
-import { WeatherTemperature } from './weather-temperature';
 
+/**
+ * See https://openweathermap.org/current#parameter
+ */
 export interface WeatherData {
-  weather: Array<WeatherCondition>;
-  main: WeatherTemperature;
-  name: string;
   cod: number;
+  id: number;
+  name: string;
+  weather: Array<WeatherCondition>;
+  main: {
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+  };
 }
