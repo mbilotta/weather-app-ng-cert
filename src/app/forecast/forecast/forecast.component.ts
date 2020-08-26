@@ -25,19 +25,25 @@ export class ForecastComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.zipCode = params.get('zipcode');
-      this.loading = true;
-      this.weatherService.getDailyWeatherForecast(this.zipCode, 5).pipe(
-        tap(forecastData => {
-          this.forecastData = forecastData;
-        }),
-        catchError(error => {
-          this.error = error;
-          return throwError(error);
-        }),
-        finalize(() => {
-          this.loading = false;
-        })
-      ).subscribe();
+      if (/^[0-9]{5}$/.test(this.zipCode)) {
+        this.loading = true;
+        this.weatherService.getDailyWeatherForecast(this.zipCode, 5).pipe(
+          tap(forecastData => {
+            this.forecastData = forecastData;
+          }),
+          catchError(error => {
+            this.error = error;
+            return throwError(error);
+          }),
+          finalize(() => {
+            this.loading = false;
+          })
+        ).subscribe();  
+      } else {
+        this.error = {
+          message: 'invalid zip code'
+        };
+      }
     });
   }
 
