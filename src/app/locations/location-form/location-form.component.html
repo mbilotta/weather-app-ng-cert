@@ -1,6 +1,9 @@
 <form class="well" #form="ngForm" ngForm (ngSubmit)="onSubmit(form)">
   <h2>Enter a zipcode:</h2>
-  <input ngModel name="zipCode" pattern="[0-9]*" required class="form-control" placeholder="Zipcode" type="text" id="addLocation">
+  <div class="form-group" [class.has-error]="form.submitted && zipCode.errors?.pattern">
+    <input ngModel name="zipCode" #zipCode="ngModel" pattern="[0-9]{5}" required class="form-control" placeholder="Zipcode" type="text" id="addLocation">
+    <span *ngIf="form.submitted && zipCode.errors?.pattern" class="help-block">Invalid zip code</span>
+  </div>
   <br>
   <button class="btn btn-primary" id="addLocationBtn">
     Add location

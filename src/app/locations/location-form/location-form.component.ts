@@ -18,7 +18,7 @@ export class LocationFormComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       this.onAddLocation.emit(form.value.zipCode);
-      form.reset();
+      form.resetForm();
     }
   }
 }
