@@ -19,7 +19,7 @@
     </div>  
   </ng-template>
   <div>
-    <span class="close">×</span>
+    <span class="close" (click)="remove()">×</span>
     <img *ngIf="location?.weather[0].id | weatherConditionIcon; let icon" src="https://www.angulartraining.com/images/weather/{{icon}}.png">
   </div>
 </div>

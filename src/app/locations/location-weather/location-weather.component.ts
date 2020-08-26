@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WeatherData } from 'src/app/core/model/weather-data';
 import { WeatherService } from 'src/app/core/weather.service';
 import { tap, finalize, catchError } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import { throwError } from 'rxjs';
 export class LocationWeatherComponent implements OnInit {
 
   @Input() zipCode: string;
+
+  @Output() onRemove = new EventEmitter<string>();
 
   location: WeatherData;
   loading: boolean;
@@ -35,4 +37,7 @@ export class LocationWeatherComponent implements OnInit {
     ).subscribe();
   }
 
+  remove() {
+    this.onRemove.emit(this.zipCode);
+  }
 }

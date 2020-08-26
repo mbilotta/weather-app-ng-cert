@@ -15,11 +15,18 @@ export class LocationsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.locations = this.storage.getAll();
   }
 
   addLocation(zipCode: string) {
     if (this.storage.add(zipCode)) {
       this.locations.push(zipCode);
+    }
+  }
+
+  removeLocation(zipCode: string) {
+    if (this.storage.remove(zipCode)) {
+      this.locations = this.storage.getAll();
     }
   }
 }

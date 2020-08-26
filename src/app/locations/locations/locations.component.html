@@ -1,4 +1,6 @@
 <app-location-form (onAddLocation)="addLocation($event)"></app-location-form>
 <div>
-  <app-location-weather *ngFor="let location of locations" [zipCode]="location"></app-location-weather>
+  <app-location-weather *ngFor="let location of locations"
+      [zipCode]="location"
+      (onRemove)="removeLocation($event)"></app-location-weather>
 </div>
