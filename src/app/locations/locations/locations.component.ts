@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from 'src/app/core/weather.service';
+import { LocationStorageService } from 'src/app/core/location-storage.service';
 
 @Component({
   selector: 'app-locations',
@@ -8,9 +8,18 @@ import { WeatherService } from 'src/app/core/weather.service';
 })
 export class LocationsComponent implements OnInit {
 
-  constructor(private weatherService: WeatherService) { }
+  locations: Array<string> = [];
+
+  constructor(
+    private storage: LocationStorageService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  addLocation(zipCode: string) {
+    if (this.storage.add(zipCode)) {
+      this.locations.push(zipCode);
+    }
+  }
 }

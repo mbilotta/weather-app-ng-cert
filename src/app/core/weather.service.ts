@@ -2,7 +2,7 @@ import { Injectable, Inject, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WEATHER_API_CONFIG, WeatherApiConfig, BACKUP_WEATHER_API_CONFIG } from './model/weather-api-config';
 import { catchError } from 'rxjs/operators';
-import { CurrentWeather } from './model/current-weather';
+import { WeatherData } from './model/weather-data';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class WeatherService {
   }
 
   private buildCurrentWeatherCall(zipCode: string, config: WeatherApiConfig) {
-    return this.http.get<CurrentWeather>(`${config.url}/data/2.5/weather`, {
+    return this.http.get<WeatherData>(`${config.url}/data/2.5/weather`, {
       params: {
         zip: zipCode,
         appid: config.appId
@@ -37,7 +37,7 @@ export class WeatherService {
   }
 
   private buildBackupCurrentWeatherCall(zipCode: string, config: WeatherApiConfig) {
-    return this.http.get<CurrentWeather>(`${config.url}/weather`, {
+    return this.http.get<WeatherData>(`${config.url}/weather`, {
       params: {
         zipcode: zipCode
       }
