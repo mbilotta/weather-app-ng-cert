@@ -10,6 +10,7 @@ export interface WeatherForecastData {
   };
   cnt: number;
   list: Array<{
+    dt: number;
     temp: {
       min: number;
       max: number;
